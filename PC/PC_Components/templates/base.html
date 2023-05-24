@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой сайт</title>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <div id="top-nav">
+        <div class="logo">
+            <img src="{% static 'img/logo.png' %}" alt="Логотип">
+        </div>
+        <a href="#">Главная</a>
+        <a href="#">Комплектующие</a>
+        <a href="#">Конструктор</a>
+        <div class="right">
+            <a href="#">Регистрация</a>
+            <a href="#">Войти</a>
+        </div>
+    </div>
+</body>
+</html>
