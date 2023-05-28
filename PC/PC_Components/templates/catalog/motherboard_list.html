@@ -1,0 +1,15 @@
+{% extends "catalog/accessories.html" %}
+
+{% block content %}
+    <h1>Материнские платы</h1>
+
+    {% if motherboard_list %}
+        <ul>
+            {% for motherboard in motherboard_list %}
+                <li>
+                    <a href="{{ motherboard.get_absolute_url }}">{{ motherboard.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
