@@ -1,0 +1,22 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Видеокарта: {{ videocards.name }}</h1>
+
+    <div class="information">
+        <div class="photo_video">
+            <img src="{% static 'img/videocards/'|add:videocards.name|add:'.png' %}" alt="{{ videocards.name }}">
+        </div>
+
+        <div class="сharacteristics">
+            <p><strong>Объём видеопамяти:</strong> {{videocards.video_memory }}</p>
+            <p><strong>Тип видеопамяти:</strong> {{videocards.memoty_type }}</p>
+            <p><strong>Частота видеопамяти:</strong> {{videocards.memory_frequency }}</p>
+            <p><strong>Тип подключения:</strong> {{videocards.connection_type }}</p>
+            <p><strong>Рекомендуемая мощность БП:</strong> {{videocards.recommended_psu_wattage }}</p>
+        </div>
+
+    </div>
+{% endblock %}

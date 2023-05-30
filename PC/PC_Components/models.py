@@ -24,6 +24,9 @@ class VideoCards(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('videocard-detail', args=[str(self.id)])
+
 class type_RAM(models.Model):
     type = models.CharField(max_length=10,
                             help_text='Введите тип оперативной памяти',

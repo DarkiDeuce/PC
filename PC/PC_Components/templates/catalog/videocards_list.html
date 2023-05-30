@@ -1,0 +1,25 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="header">
+        <h1>Видеокарты</h1>
+    </div>
+    {% if videocards_list %}
+        <div class="motherboard_list">
+            <div class="grid-container">
+                {% for videocard in videocards_list %}
+                    <div class="grid-item">
+                        <div class="card-video">
+                            <a href="{{ videocard.get_absolute_url }}">
+                                <img src="{% static 'img/videocards/'|add:videocard.name|add:'.png' %}" alt="{{ videocard.name }}">
+                                <p>{{ videocard.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

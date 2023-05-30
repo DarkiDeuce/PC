@@ -138,3 +138,14 @@ body {
 .сharacteristics {
     padding-left: 20px;
 }
+
+.card-video img {
+    width: 100%;
+    height: 130px;
+}
+
+.photo_video img{
+    width: 250px;
+    height: 130px;
+}
+

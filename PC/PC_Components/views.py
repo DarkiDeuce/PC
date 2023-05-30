@@ -7,14 +7,17 @@ class MotherboardListView(generic.ListView):
     template_name = 'catalog/motherboard_list.html'
     model = Motherboard
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['image_path'] = 'img/motherboard/'
-        return context
-
 class MotherboardDetailView(generic.DetailView):
     model = Motherboard
     template_name = 'catalog/motherboard_detail.html'
+
+class VideocardsListView(generic.ListView):
+    template_name = 'catalog/videocards_list.html'
+    model = VideoCards
+
+class VideocardsDetailView(generic.DetailView):
+    model = VideoCards
+    template_name = 'catalog/videocards_detail.html'
 
 def index(request):
     num_matherboard = Motherboard.objects.all().count()
