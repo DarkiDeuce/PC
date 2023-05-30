@@ -14,6 +14,7 @@ class MotherboardListView(generic.ListView):
 
 class MotherboardDetailView(generic.DetailView):
     model = Motherboard
+    template_name = 'catalog/motherboard_detail.html'
 
 def index(request):
     num_matherboard = Motherboard.objects.all().count()

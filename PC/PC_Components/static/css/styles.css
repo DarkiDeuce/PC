@@ -125,3 +125,16 @@ body {
     text-align: center;
     padding-right: 440px;
 }
+
+.photo_motherboard img{
+    width: 250px;
+    height: 250px;
+}
+
+.information {
+    display: flex;
+}
+
+.сharacteristics {
+    padding-left: 20px;
+}
