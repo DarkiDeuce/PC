@@ -1,0 +1,25 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="header">
+        <h1>Накопители</h1>
+    </div>
+    {% if ssd_list %}
+        <div class="motherboard_list">
+            <div class="grid-container">
+                {% for ssd in ssd_list %}
+                    <div class="grid-item">
+                        <div class="card-video">
+                            <a href="{{ ssd.get_absolute_url }}">
+                                <img src="{% static 'img/ssd/'|add:ssd.name|add:'.png' %}" alt="{{ ssd.name }}">
+                                <p>{{ ssd.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

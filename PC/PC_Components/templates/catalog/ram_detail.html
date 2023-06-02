@@ -1,0 +1,20 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Оперативная память: {{ ram.name }}</h1>
+
+    <div class="information">
+        <div class="photo_video">
+            <img src="{% static 'img/ram/'|add:ram.name|add:'.png' %}" alt="{{ ram.name }}">
+        </div>
+
+        <div class="сharacteristics">
+            <p><strong>Объём одного модуля:</strong> {{ram.memory }}</p>
+            <p><strong>Тип памяти:</strong> {{ram.type }}</p>
+            <p><strong>Тактовая частота:</strong> {{ram.clock_frequency }}</p>
+        </div>
+
+    </div>
+{% endblock %}

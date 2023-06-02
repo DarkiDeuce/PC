@@ -1,0 +1,25 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="header">
+        <h1>Оперативная память</h1>
+    </div>
+    {% if cpu_list %}
+        <div class="motherboard_list">
+            <div class="grid-container">
+                {% for cpu in cpu_list %}
+                    <div class="grid-item">
+                        <div class="card-cpu">
+                            <a href="{{ cpu.get_absolute_url }}">
+                                <img src="{% static 'img/cpu/'|add:cpu.name|add:'.png' %}" alt="{{ cpu.name }}">
+                                <p>{{ cpu.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

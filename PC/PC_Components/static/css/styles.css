@@ -140,12 +140,21 @@ body {
 }
 
 .card-video img {
-    width: 100%;
-    height: 130px;
+    width: 104%;
+    height: 140px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }
 
 .photo_video img{
     width: 250px;
     height: 130px;
+    margin-top: 30px;
+}
+
+.card-cpu img{
+    width: 200px;
+    height: 200px;
 }
 

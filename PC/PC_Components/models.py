@@ -52,6 +52,9 @@ class RAM(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('ram-detail', args=[str(self.id)])
+
 class CPUSocket(models.Model):
     socket_name = models.CharField(max_length=15,
                                    help_text='Введите название сокета',
@@ -76,6 +79,9 @@ class CPU(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('cpu-detail', args=[str(self.id)])
+
 class SSD(models.Model):
     name = models.CharField(max_length=200,
                             help_text='Введите название накопителя',
@@ -89,6 +95,9 @@ class SSD(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('ssd-detail', args=[str(self.id)])
 
 class Motherboard(models.Model):
     name = models.CharField(max_length=200,
@@ -129,3 +138,6 @@ class PowerUnit(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('powerunit-detail', args=[str(self.id)])

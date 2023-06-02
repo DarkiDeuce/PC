@@ -1,0 +1,25 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="header">
+        <h1>Материнские платы</h1>
+    </div>
+    {% if powerunit_list %}
+        <div class="motherboard_list">
+            <div class="grid-container">
+                {% for powerunit in powerunit_list %}
+                    <div class="grid-item">
+                        <div class="card-cpu">
+                            <a href="{{ powerunit.get_absolute_url }}">
+                                <img src="{% static 'img/powerunit/'|add:powerunit.name|add:'.png' %}" alt="{{ powerunit.name }}">
+                                <p>{{ powerunit.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Накопитель: {{ ssd.name }}</h1>
+
+    <div class="information">
+        <div class="card-video">
+            <img src="{% static 'img/ssd/'|add:ssd.name|add:'.png' %}" alt="{{ ssd.name }}">
+        </div>
+
+        <div class="сharacteristics">
+            <p><strong>Ёмкость накопителя:</strong> {{ssd.capacity }}</p>
+            <p><strong>Скорость чтения/записи:</strong> {{ssd.speed }}</p>
+        </div>
+
+    </div>
+{% endblock %}
+

@@ -4,9 +4,10 @@
     <ul class="sidebar">
         <li><a href="{% url 'motherboard' %}">Материнские платы</a></li>
         <li><a href="{% url 'videocard' %}">Видеокарты</a></li>
-        <li><a href="#">Оперативная память</a></li>
-        <li><a href="#">Процессоры</a></li>
-        <li><a href="#">Блоки питания</a></li>
+        <li><a href="{% url 'ram' %}">Оперативная память</a></li>
+        <li><a href="{% url 'cpu' %}">Процессоры</a></li>
+        <li><a href="{% url 'powerunit' %}">Блоки питания</a></li>
+        <li><a href="{% url 'ssd' %}">Накопители</a></li>
     </ul>
 
 {% endblock %}

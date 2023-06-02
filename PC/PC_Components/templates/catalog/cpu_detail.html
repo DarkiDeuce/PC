@@ -1,0 +1,21 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Процессор: {{ cpu.name }}</h1>
+
+    <div class="information">
+        <div class="photo_motherboard">
+            <img src="{% static 'img/cpu/'|add:cpu.name|add:'.png' %}" alt="{{ cpu.name }}">
+        </div>
+
+        <div class="сharacteristics">
+            <p><strong>Сокет:</strong> {{cpu.socket_cpu }}</p>
+            <p><strong>Кол-во ядер:</strong> {{cpu.nuclei }}</p>
+            <p><strong>Тактовая частота:</strong> {{cpu.clock_frequency }}</p>
+        </div>
+
+    </div>
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="header">
+        <h1>Оперативная память</h1>
+    </div>
+    {% if ram_list %}
+        <div class="motherboard_list">
+            <div class="grid-container">
+                {% for ram in ram_list %}
+                    <div class="grid-item">
+                        <div class="card-video">
+                            <a href="{{ ram.get_absolute_url }}">
+                                <img src="{% static 'img/ram/'|add:ram.name|add:'.png' %}" alt="{{ ram.name }}">
+                                <p>{{ ram.name }}</p>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

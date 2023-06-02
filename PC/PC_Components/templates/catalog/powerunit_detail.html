@@ -1,0 +1,23 @@
+{% extends "catalog/accessories.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Блок питания: {{ powerunit.name }}</h1>
+
+    <div class="information">
+        <div class="photo_motherboard">
+            <img src="{% static 'img/powerunit/'|add:powerunit.name|add:'.png' %}" alt="{{ powerunit.name }}">
+        </div>
+
+        <div class="сharacteristics">
+            <p><strong>Мощность:</strong> {{powerunit.power }}</p>
+            <p><strong>Стандарт эффективности:</strong> {{powerunit.efficiency_standard }}</p>
+            <p><strong>Тип разъёма для мат. платы:</strong> {{powerunit.motherboard_connector_type }}</p>
+            <p><strong>Количество разъёмов 4+4pin CPU:</strong> {{powerunit.quantityCPU }}</p>
+            <p><strong>Количество разъёмов PCI-E:</strong> {{powerunit.quantityPCI_E }}</p>
+        </div>
+
+    </div>
+{% endblock %}
+
