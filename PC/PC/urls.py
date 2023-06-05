@@ -6,6 +6,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('accessories/', views.accessories, name='accessories'),
+    path('constructor/', views.constructor, name='constructor'),
+    # path('constructor/<int:motherboard_id>/', views.constructor, name='constructor'),
     re_path(r'^accessories/motherboards/$', views.MotherboardListView.as_view(), name='motherboard'),
     re_path(r'^accessories/motherboard/(?P<pk>\d+)/$', views.MotherboardDetailView.as_view(), name='motherboard-detail'),
     re_path(r'^accessories/videocards/$', views.VideocardsListView.as_view(), name='videocard'),
@@ -18,4 +20,6 @@ urlpatterns = [
     re_path(r'^accessories/powerunit/(?P<pk>\d+)/$', views.PowerUnitDetailView.as_view(), name='powerunit-detail'),
     re_path(r'^accessories/ssd/$', views.SSDListView.as_view(), name='ssd'),
     re_path(r'^accessories/ssd/(?P<pk>\d+)/$', views.SSDDetailView.as_view(), name='ssd-detail'),
+    re_path(r'^constructor/motherboard_selection/$', views.MotherboardSelection.as_view(), name='motherboard_selection'),
+
 ]

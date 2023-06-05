@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="main">
+        <h1>Конструктор системного блока</h1>
+        <div class="constructor">
+            <div class="component">
+                {% if motherboard %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/motherboard/'|add:motherboard.name|add:'.png' %}" alt="{{ motherboard.name }}">
+                    </div>
+                    <div class="description">
+                        <h3>Материнская плата: {{ motherboard.name }}</h3>
+                        <p><strong>Сокет:</strong> {{motherboard.socket_motherboard }}</p>
+                        <p><strong>Тип опреративной памяти:</strong> {{motherboard.memory_type }}</p>
+                        <a href="{% url 'motherboard_selection' %}" class="add-component-btn">Заменить</a>
+                    </div>
+                {% else %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/primordial/motherboard.png' %}" alt="motherboard">
+                    </div>
+                    <div class="description">
+                        <h3>Материнская плата</h3>
+                        <p>Материнская плата (MB) – основа компьютера. На плату как конструктор собираются остальные комплектующие. Материнская плата не отвечает за быстродействие компьютера, но за функционал, от нее зависит количество нужных выходов и разъемов, поддержка режимов SLI, Cross-Fire, Raid, и конечно разводка системы питания.</p>
+                        <a href="{% url 'motherboard_selection' %}" class="add-component-btn">Добавить компонент</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="line"></div>
+
+            <div class="component">
+                <div class="photo-component">
+                    <img src="{% static 'img/primordial/videocard.png' %}" alt="videocard">
+                </div>
+                <div class="description">
+                    <h3>Видеокарта</h3>
+                    <p>Видеокарта (GPU) – это устройство отвечающее за поддержку и быстродействие игрового процесса. Основой видеокарты есть графический чип, чем выше мощность тем лучше. Второстепенный показатель – это видеопамять, отвечающая за подгрузку текстур на дисплей.</p>
+                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="component">
+                <div class="photo-component">
+                    <img src="{% static 'img/primordial/ram.png' %}" alt="ram">
+                </div>
+                <div class="description">
+                    <h3>Оперативная память</h3>
+                    <p>Оперативная память (Mem) – отвечает за то, с каким объемом данных в данный момент времени может работать процессор. Чем ее больше, тем быстрее работает компьютер.</p>
+                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="component">
+                <div class="photo-component">
+                    <img src="{% static 'img/primordial/cpu.png' %}" alt="cpu">
+                </div>
+                <div class="description">
+                    <h3>Процессор</h3>
+                    <p>Процессор (CPU) – сердце компьютера. Чем выше частота тем быстрее обрабатываются данные, а количество ядер позволяет распределить нагрузку и повысить быстродействие всей системы. Для разгона существуют модели с разблокированным множителем. Больший кеш улучшает работу в тяжелых режимах.</p>
+                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="component">
+                <div class="photo-component">
+                    <img src="{% static 'img/primordial/powerunit.png' %}" alt="powerunit">
+                </div>
+                <div class="description">
+                    <h3>Блок питания</h3>
+                    <p>Блок питания обеспечивает током все компоненты и противостоит всем перегрузкам и скачкам сети. Мощность блока питания выбирается всегда с запасом, так он дольше прослужит без пиковых нагрузок.</p>
+                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="component">
+                <div class="photo-component">
+                    <img src="{% static 'img/primordial/ssd.png' %}" alt="ssd">
+                </div>
+                <div class="description">
+                    <h3>Твердотельный накопитель</h3>
+                    <p>Твердотельный накопитель (SSD) – это скоростное устройство для хранения данных. Его скорость работы в несколько раз быстрее обычного жесткого диска. Обычно SSD используют для установки на него Операционной системы и всех сопутствующих программ. Существенно ускоряет работу всего компьютера.</p>
+                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

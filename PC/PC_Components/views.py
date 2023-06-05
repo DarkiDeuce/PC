@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import *
 from .models import Motherboard, VideoCards, RAM, CPU, PowerUnit, SSD
 from django.views import generic
+from .forms import VideoCardsForm, RAMForm, CPUForm, SSDForm, MotherboardForm, PowerUnitForm
 
 class MotherboardListView(generic.ListView):
     model = Motherboard
@@ -51,13 +52,19 @@ class SSDDetailView(generic.DetailView):
     model = SSD
     template_name = 'catalog/ssd_detail.html'
 
+class MotherboardSelection(generic.ListView):
+    model = Motherboard
+    template_name = 'constructor/motherboard_list.html'
+
 def index(request):
+    #Заменить запросы к базе на 404
+    #Забить из БД только те значения, которы используются в шаблоне
     num_matherboard = Motherboard.objects.all().count()
     num_videcard = VideoCards.objects.all().count()
     num_ram = RAM.objects.all().count()
     num_cpu = CPU.objects.all().count()
     num_powerunit = PowerUnit.objects.all().count()
-    num_ssd = SSD.obhects.all().count
+    num_ssd = SSD.objects.all().count
 
 
     return render(request, 'index.html', context={'num_matherboard': num_matherboard,
@@ -70,3 +77,12 @@ def index(request):
 
 def accessories(request):
     return render(request, 'catalog/accessories.html')
+
+def constructor(request):
+    if request.method == 'POST':
+        motherboard_id = request.POST.get('motherboard_id')
+        motherboard = get_object_or_404(Motherboard, id=motherboard_id)
+
+        return render(request, 'constructor/constructor.html', context={'motherboard': motherboard})
+
+    return render(request, 'constructor/constructor.html')

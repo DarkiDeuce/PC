@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="main">
+        <h1>Конструктор системного блока</h1>
+        <div class="constructor">
+            {% if motherboard_list %}
+                {% for motherboard in motherboard_list %}
+                    <div class="component">
+                        <div class="photo-component">
+                            <img src="{% static 'img/motherboard/'|add:motherboard.name|add:'.png' %}" alt="{{ motherboard.name }}">
+                        </div>
+                        <div class="description">
+                            <h3>Материнская плата: {{ motherboard.name }}</h3>
+                            <div class="description">
+                                <p><strong>Сокет:</strong> {{motherboard.socket_motherboard }}</p>
+                                <p><strong>Тип опреративной памяти:</strong> {{motherboard.memory_type }}</p>
+                                <form method="POST" action="{% url 'constructor' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="motherboard_id" value="{{ motherboard.id }}">
+                                    <button type="submit" class="add-component-btn">Выбрать</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line"></div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
