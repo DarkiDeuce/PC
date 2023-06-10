@@ -21,5 +21,9 @@ urlpatterns = [
     re_path(r'^accessories/ssd/$', views.SSDListView.as_view(), name='ssd'),
     re_path(r'^accessories/ssd/(?P<pk>\d+)/$', views.SSDDetailView.as_view(), name='ssd-detail'),
     re_path(r'^constructor/motherboard_selection/$', views.MotherboardSelection.as_view(), name='motherboard_selection'),
+    re_path(r'^constructor/videocard_selection/$', views.VideocardSelection.as_view(), name='videocard_selection'),
+    re_path(r'^constructor/ram_selection/$', views.RAMSelection.as_view(), name='ram_selection'),
+    re_path(r'^constructor/cpu_selection/$', views.CPUSelection.as_view(), name='cpu_selection'),
+    re_path(r'^constructor/power_unit_selection/$', views.PowerUnitSelection.as_view(), name='power_unit_selection'),
 
 ]

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="main">
+        <h1>Конструктор системного блока</h1>
+        <div class="constructor">
+            {% if videocards_list %}
+                {% for videocards in videocards_list %}
+                    <div class="component">
+                        <div class="photo-component">
+                            <img src="{% static 'img/videocards/'|add:videocards.name|add:'.png' %}" alt="{{ videocards.name }}">
+                        </div>
+                        <div class="description">
+                            <h3>Видеокарта: {{ videocards.name }}</h3>
+                            <div class="description">
+                                <p><strong>Объём:</strong> {{videocards.video_memory }}</p>
+                                <p><strong>Тип видеопамяти:</strong> {{videocards.memoty_type }}</p>
+                                <p><strong>Частота памяти:</strong> {{videocards.memory_frequency }}</p>
+                                <p><strong>Тип подключения:</strong> {{videocards.connection_type }}</p>
+                                <p><strong>Рекомендуемая мощность БП:</strong> {{videocards.recommended_psu_wattage }}</p>
+                                <form method="POST" action="{% url 'constructor' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="videocards_id" value="{{ videocards.id }}">
+                                    <button type="submit" class="add-component-btn">Выбрать</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="line"></div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

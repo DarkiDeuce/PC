@@ -9,12 +9,12 @@
             <div class="component">
                 {% if motherboard %}
                     <div class="photo-component">
-                        <img src="{% static 'img/motherboard/'|add:motherboard.name|add:'.png' %}" alt="{{ motherboard.name }}">
+                        <img src="{% static 'img/motherboard/'|add:motherboard.0.name|add:'.png' %}" alt="{{ motherboard.0.name }}">
                     </div>
                     <div class="description">
-                        <h3>Материнская плата: {{ motherboard.name }}</h3>
-                        <p><strong>Сокет:</strong> {{motherboard.socket_motherboard }}</p>
-                        <p><strong>Тип опреративной памяти:</strong> {{motherboard.memory_type }}</p>
+                        <h3>Материнская плата: {{ motherboard.0.name }}</h3>
+                        <p><strong>Сокет:</strong> {{motherboard.0.socket_motherboard }}</p>
+                        <p><strong>Тип опреративной памяти:</strong> {{motherboard.0.memory_type }}</p>
                         <a href="{% url 'motherboard_selection' %}" class="add-component-btn">Заменить</a>
                     </div>
                 {% else %}
@@ -32,53 +32,108 @@
             <div class="line"></div>
 
             <div class="component">
-                <div class="photo-component">
-                    <img src="{% static 'img/primordial/videocard.png' %}" alt="videocard">
-                </div>
-                <div class="description">
-                    <h3>Видеокарта</h3>
-                    <p>Видеокарта (GPU) – это устройство отвечающее за поддержку и быстродействие игрового процесса. Основой видеокарты есть графический чип, чем выше мощность тем лучше. Второстепенный показатель – это видеопамять, отвечающая за подгрузку текстур на дисплей.</p>
-                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
-                </div>
+                {% if videocard %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/videocards/'|add:videocard.0.name|add:'.png' %}" alt="{{ videocard.0.name }}">
+                    </div>
+                    <div class="description">
+                        <h3>Видеокарта: {{ videocard.0.name }}</h3>
+                        <p><strong>Объём:</strong> {{videocard.0.video_memory }}</p>
+                        <p><strong>Тип видеопамяти:</strong> {{videocard.0.memoty_type }}</p>
+                        <p><strong>Частота памяти:</strong> {{videocard.0.memory_frequency }}</p>
+                        <p><strong>Тип подключения:</strong> {{videocard.0.connection_type }}</p>
+                        <p><strong>Рекомендуемая мощность БП:</strong> {{videocard.0.recommended_psu_wattage }}</p>
+                        <a href="{% url 'videocard_selection' %}" class="add-component-btn">Заменить</a>
+                    </div>
+                {% else %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/primordial/videocard.png' %}" alt="videocard">
+                    </div>
+                    <div class="description">
+                        <h3>Видеокарта</h3>
+                        <p>Видеокарта (GPU) – это устройство отвечающее за поддержку и быстродействие игрового процесса. Основой видеокарты есть графический чип, чем выше мощность тем лучше. Второстепенный показатель – это видеопамять, отвечающая за подгрузку текстур на дисплей.</p>
+                        <a href="{% url 'videocard_selection' %}" class="add-component-btn">Добавить компонент</a>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="line"></div>
 
             <div class="component">
-                <div class="photo-component">
-                    <img src="{% static 'img/primordial/ram.png' %}" alt="ram">
-                </div>
-                <div class="description">
-                    <h3>Оперативная память</h3>
-                    <p>Оперативная память (Mem) – отвечает за то, с каким объемом данных в данный момент времени может работать процессор. Чем ее больше, тем быстрее работает компьютер.</p>
-                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
-                </div>
+                {% if ram %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/ram/'|add:ram.0.name|add:'.png' %}" alt="{{ ram.0.name }}">
+                    </div>
+                    <div class="description">
+                        <h3>Оперативная память: {{ ram.0.name }}</h3>
+                        <p><strong>Объём:</strong> {{ ram.0.memory }}</p>
+                        <p><strong>Тип оперативной памяти:</strong> {{ ram.0.type }}</p>
+                        <p><strong>Тактовая частота:</strong> {{ ram.0.clock_frequency }}</p>
+                        <a href="{% url 'ram_selection' %}" class="add-component-btn">Заменить</a>
+                    </div>
+                {% else %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/primordial/ram.png' %}" alt="ram">
+                    </div>
+                    <div class="description">
+                        <h3>Оперативная память</h3>
+                        <p>Оперативная память (Mem) – отвечает за то, с каким объемом данных в данный момент времени может работать процессор. Чем ее больше, тем быстрее работает компьютер.</p>
+                        <a href="{% url 'ram_selection' %}" class="add-component-btn">Добавить компонент</a>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="line"></div>
 
             <div class="component">
-                <div class="photo-component">
-                    <img src="{% static 'img/primordial/cpu.png' %}" alt="cpu">
-                </div>
-                <div class="description">
-                    <h3>Процессор</h3>
-                    <p>Процессор (CPU) – сердце компьютера. Чем выше частота тем быстрее обрабатываются данные, а количество ядер позволяет распределить нагрузку и повысить быстродействие всей системы. Для разгона существуют модели с разблокированным множителем. Больший кеш улучшает работу в тяжелых режимах.</p>
-                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
-                </div>
+                {% if cpu %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/cpu/'|add:cpu.0.name|add:'.png' %}" alt="{{ cpu.0.name }}">
+                    </div>
+                    <div class="description">
+                        <h3>Процессор: {{ cpu.0.name }}</h3>
+                        <p><strong>Сокет:</strong> {{ cpu.0.socket_cpu }}</p>
+                        <p><strong>Количество ядер:</strong> {{ cpu.0.nuclei }}</p>
+                        <p><strong>Тактовая частота:</strong> {{ cpu.0.clock_frequency }}</p>
+                        <a href="{% url 'cpu_selection' %}" class="add-component-btn">Заменить</a>
+                    </div>
+
+                {% else %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/primordial/cpu.png' %}" alt="cpu">
+                    </div>
+                    <div class="description">
+                        <h3>Процессор</h3>
+                        <p>Процессор (CPU) – сердце компьютера. Чем выше частота тем быстрее обрабатываются данные, а количество ядер позволяет распределить нагрузку и повысить быстродействие всей системы. Для разгона существуют модели с разблокированным множителем. Больший кеш улучшает работу в тяжелых режимах.</p>
+                        <a href="{% url 'cpu_selection' %}" class="add-component-btn">Добавить компонент</a>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="line"></div>
 
             <div class="component">
-                <div class="photo-component">
-                    <img src="{% static 'img/primordial/powerunit.png' %}" alt="powerunit">
-                </div>
-                <div class="description">
-                    <h3>Блок питания</h3>
-                    <p>Блок питания обеспечивает током все компоненты и противостоит всем перегрузкам и скачкам сети. Мощность блока питания выбирается всегда с запасом, так он дольше прослужит без пиковых нагрузок.</p>
-                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
-                </div>
+                {% if powerunit %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/powerunit/'|add:powerunit.0.name|add:'.png' %}" alt="{{ powerunit.0.name }}">
+                    </div>
+                    <div class="description">
+                        <p><strong>Мощность:</strong> {{ powerunit.0.power }}</p>
+                        <p><strong>Стандарт эффективности:</strong> {{ powerunit.0.efficiency_standard }}</p>
+                        <p><strong>Тип разъёма для мат. платы:</strong> {{ powerunit.0.motherboard_connector_type }}</p>
+                        <p><strong>Количество разъёмов 4+4pin CPU':</strong> {{ powerunit.0.quantityCPU }}</p>
+                        <p><strong>Количество разъёмов PCI-E:</strong> {{ powerunit.0.quantityPCI_E }}</p>
+                    </div>
+                {% else %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/primordial/powerunit.png' %}" alt="powerunit">
+                    </div>
+                    <div class="description">
+                        <h3>Блок питания</h3>
+                        <p>Блок питания обеспечивает током все компоненты и противостоит всем перегрузкам и скачкам сети. Мощность блока питания выбирается всегда с запасом, так он дольше прослужит без пиковых нагрузок.</p>
+                        <a href="{% url 'power_unit_selection' %}" class="add-component-btn">Добавить компонент</a>
+                    </div>
+                {% endif %}
             </div>
 
             <div class="line"></div>
