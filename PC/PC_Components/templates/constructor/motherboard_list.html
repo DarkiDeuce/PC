@@ -17,6 +17,7 @@
                             <div class="description">
                                 <p><strong>Сокет:</strong> {{motherboard.socket_motherboard }}</p>
                                 <p><strong>Тип опреративной памяти:</strong> {{motherboard.memory_type }}</p>
+                                {{ motherboard.id }}
                                 <form method="POST" action="{% url 'constructor' %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="motherboard_id" value="{{ motherboard.id }}">
@@ -25,7 +26,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="line"></div>
                 {% endfor %}
             {% endif %}

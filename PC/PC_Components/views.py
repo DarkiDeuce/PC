@@ -1,8 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import *
+from django.shortcuts import render
 from .models import Motherboard, VideoCards, RAM, CPU, PowerUnit, SSD
 from django.views import generic
-from .forms import VideoCardsForm, RAMForm, CPUForm, SSDForm, MotherboardForm, PowerUnitForm
 from django.contrib.sessions.backends.db import SessionStore
 
 class MotherboardListView(generic.ListView):
@@ -83,7 +81,6 @@ def index(request):
     num_powerunit = PowerUnit.objects.all().count()
     num_ssd = SSD.objects.all().count
 
-
     return render(request, 'index.html', context={'num_matherboard': num_matherboard,
                                                   'num_videcard': num_videcard,
                                                   'num_ram': num_ram,
@@ -96,8 +93,9 @@ def index(request):
 def accessories(request):
     return render(request, 'catalog/accessories.html')
 
-
 def constructor(request):
+    session = SessionStore(request.session.session_key)
+
     if request.method == 'POST':
         motherboard_id = request.POST.get('motherboard_id')
         videocards_id = request.POST.get('videocards_id')
@@ -106,31 +104,22 @@ def constructor(request):
         powerunit_id = request.POST.get('powerunit_id')
 
         if motherboard_id is not None:
-            session = SessionStore(request.session.session_key)
             session['motherboard_id'] = motherboard_id
-            session.save()
 
         if videocards_id is not None:
-            session = SessionStore(request.session.session_key)
             session['videocards_id'] = videocards_id
-            session.save()
 
         if ram_id is not None:
-            session = SessionStore(request.session.session_key)
             session['ram_id'] = ram_id
-            session.save()
 
         if cpu_id is not None:
-            session = SessionStore(request.session.session_key)
             session['cpu_id'] = cpu_id
-            session.save()
 
         if powerunit_id is not None:
-            session = SessionStore(request.session.session_key)
             session['powerunit_id'] = powerunit_id
-            session.save()
 
-    session = SessionStore(request.session.session_key)
+        session.save()
+
     motherboard_id = session.get('motherboard_id')
     videocards_id = session.get('videocards_id')
     ram_id = session.get('ram_id')
