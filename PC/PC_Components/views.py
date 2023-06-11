@@ -71,6 +71,10 @@ class PowerUnitSelection(generic.ListView):
     model = PowerUnit
     template_name = 'constructor/powerunit_list.html'
 
+class SSDSelection(generic.ListView):
+    model = SSD
+    template_name = 'constructor/ssd_list.html'
+
 def index(request):
     #Заменить запросы к базе на 404
     #Забить из БД только те значения, которы используются в шаблоне
@@ -102,6 +106,7 @@ def constructor(request):
         ram_id = request.POST.get('ram_id')
         cpu_id = request.POST.get('cpu_id')
         powerunit_id = request.POST.get('powerunit_id')
+        ssd_id = request.POST.get('ssd_id')
 
         if motherboard_id is not None:
             session['motherboard_id'] = motherboard_id
@@ -118,6 +123,9 @@ def constructor(request):
         if powerunit_id is not None:
             session['powerunit_id'] = powerunit_id
 
+        if ssd_id is not None:
+            session['ssd_id'] = ssd_id
+
         session.save()
 
     motherboard_id = session.get('motherboard_id')
@@ -125,17 +133,20 @@ def constructor(request):
     ram_id = session.get('ram_id')
     cpu_id = session.get('cpu_id')
     powerunit_id = session.get('powerunit_id')
+    ssd_id = session.get('ssd_id')
 
     motherboard = Motherboard.objects.filter(id=motherboard_id)
     videocard = VideoCards.objects.filter(id=videocards_id)
     ram = RAM.objects.filter(id=ram_id)
     cpu = CPU.objects.filter(id=cpu_id)
     powerunit = PowerUnit.objects.filter(id=powerunit_id)
+    ssd = SSD.objects.filter(id=ssd_id)
 
     return render(request, 'constructor/constructor.html', context={'motherboard': motherboard,
                                                                     'videocard': videocard,
                                                                     'ram': ram,
                                                                     'cpu': cpu,
                                                                     'powerunit': powerunit,
+                                                                    'ssd': ssd,
                                                                     }
                   )

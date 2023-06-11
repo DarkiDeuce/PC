@@ -24,5 +24,5 @@ urlpatterns = [
     re_path(r'^constructor/ram_selection/$', views.RAMSelection.as_view(), name='ram_selection'),
     re_path(r'^constructor/cpu_selection/$', views.CPUSelection.as_view(), name='cpu_selection'),
     re_path(r'^constructor/power_unit_selection/$', views.PowerUnitSelection.as_view(), name='power_unit_selection'),
-
+    re_path(r'^constructor/ssd_selection/$', views.SSDSelection.as_view(), name='ssd_selection'),
 ]

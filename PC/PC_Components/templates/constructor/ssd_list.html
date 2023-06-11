@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="main">
+        <h1>Конструктор системного блока</h1>
+        <div class="constructor">
+            {% if ssd_list %}
+                {% for ssd in ssd_list %}
+                    <div class="component">
+                        <div class="photo-component">
+                            <img src="{% static 'img/ssd/'|add:ssd.name|add:'.png' %}" alt="{{ ssd.name }}">
+                        </div>
+                        <div class="description">
+                            <h3>Твёрдотельный накопитель: {{ ssd.name }}</h3>
+                            <div class="description">
+                                <p><strong>Ёмкость:</strong> {{ssd.capacity }}</p>
+                                <p><strong>Скорость чтения/записи:</strong> {{ssd.speed }}</p>
+                                <form method="POST" action="{% url 'constructor' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="ssd_id" value="{{ ssd.id }}">
+                                    <button type="submit" class="add-component-btn">Выбрать</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

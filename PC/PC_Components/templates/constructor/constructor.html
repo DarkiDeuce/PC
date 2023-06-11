@@ -118,11 +118,13 @@
                         <img src="{% static 'img/powerunit/'|add:powerunit.0.name|add:'.png' %}" alt="{{ powerunit.0.name }}">
                     </div>
                     <div class="description">
+                        <h3>Блок питания: {{ powerunit.0.name }}</h3>
                         <p><strong>Мощность:</strong> {{ powerunit.0.power }}</p>
                         <p><strong>Стандарт эффективности:</strong> {{ powerunit.0.efficiency_standard }}</p>
                         <p><strong>Тип разъёма для мат. платы:</strong> {{ powerunit.0.motherboard_connector_type }}</p>
                         <p><strong>Количество разъёмов 4+4pin CPU':</strong> {{ powerunit.0.quantityCPU }}</p>
                         <p><strong>Количество разъёмов PCI-E:</strong> {{ powerunit.0.quantityPCI_E }}</p>
+                        <a href="{% url 'power_unit_selection' %}" class="add-component-btn">Заменить</a>
                     </div>
                 {% else %}
                     <div class="photo-component">
@@ -139,14 +141,26 @@
             <div class="line"></div>
 
             <div class="component">
-                <div class="photo-component">
-                    <img src="{% static 'img/primordial/ssd.png' %}" alt="ssd">
-                </div>
-                <div class="description">
-                    <h3>Твердотельный накопитель</h3>
-                    <p>Твердотельный накопитель (SSD) – это скоростное устройство для хранения данных. Его скорость работы в несколько раз быстрее обычного жесткого диска. Обычно SSD используют для установки на него Операционной системы и всех сопутствующих программ. Существенно ускоряет работу всего компьютера.</p>
-                    <a href="url_адрес" class="add-component-btn">Добавить компонент</a>
-                </div>
+                {% if ssd %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/ssd/'|add:ssd.0.name|add:'.png' %}" alt="{{ ssd.0.name }}">
+                    </div>
+                    <div class="description">
+                        <h3>Твёрдотельный накопитель: {{ ssd.0.name }}</h3>
+                        <p><strong>Ёмкость:</strong> {{ssd.capacity }}</p>
+                        <p><strong>Скорость чтения/записи:</strong> {{ssd.speed }}</p>
+                        <a href="{% url 'ssd_selection' %}" class="add-component-btn">Заменить</a>
+                    </div>
+                {% else %}
+                    <div class="photo-component">
+                        <img src="{% static 'img/primordial/ssd.png' %}" alt="ssd">
+                    </div>
+                    <div class="description">
+                        <h3>Твердотельный накопитель</h3>
+                        <p>Твердотельный накопитель (SSD) – это скоростное устройство для хранения данных. Его скорость работы в несколько раз быстрее обычного жесткого диска. Обычно SSD используют для установки на него Операционной системы и всех сопутствующих программ. Существенно ускоряет работу всего компьютера.</p>
+                        <a href="{% url 'ssd_selection' %}" class="add-component-btn">Добавить компонент</a>
+                    </div>
+                {% endif %}
             </div>
 
         </div>
