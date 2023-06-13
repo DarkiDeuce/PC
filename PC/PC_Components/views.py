@@ -98,7 +98,7 @@ def accessories(request):
     return render(request, 'catalog/accessories.html')
 
 def constructor(request):
-    session = SessionStore(request.session.session_key)
+    session = request.session
 
     if request.method == 'POST':
         motherboard_id = request.POST.get('motherboard_id')
@@ -125,8 +125,6 @@ def constructor(request):
 
         if ssd_id is not None:
             session['ssd_id'] = ssd_id
-
-        session.save()
 
     motherboard_id = session.get('motherboard_id')
     videocards_id = session.get('videocards_id')

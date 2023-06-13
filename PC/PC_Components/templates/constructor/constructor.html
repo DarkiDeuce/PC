@@ -147,8 +147,8 @@
                     </div>
                     <div class="description">
                         <h3>Твёрдотельный накопитель: {{ ssd.0.name }}</h3>
-                        <p><strong>Ёмкость:</strong> {{ssd.capacity }}</p>
-                        <p><strong>Скорость чтения/записи:</strong> {{ssd.speed }}</p>
+                        <p><strong>Ёмкость:</strong> {{ssd.0.capacity }}</p>
+                        <p><strong>Скорость чтения/записи:</strong> {{ssd.0.speed }}</p>
                         <a href="{% url 'ssd_selection' %}" class="add-component-btn">Заменить</a>
                     </div>
                 {% else %}
