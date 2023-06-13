@@ -67,6 +67,17 @@ class CPUSelection(generic.ListView):
     model = CPU
     template_name = 'constructor/cpu_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        session = self.request.session
+        cpu_socket = session.get('motherboard_socket')
+        cpu_list = CPU.objects.filter(socket_cpu__socket_name=cpu_socket)
+
+        context['cpu_list'] = cpu_list
+
+        return context
+
 class PowerUnitSelection(generic.ListView):
     model = PowerUnit
     template_name = 'constructor/powerunit_list.html'
@@ -110,6 +121,7 @@ def constructor(request):
 
         if motherboard_id is not None:
             session['motherboard_id'] = motherboard_id
+            session['motherboard_socket'] = request.POST.get('motherboard_socket')
 
         if videocards_id is not None:
             session['videocards_id'] = videocards_id

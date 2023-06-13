@@ -6,14 +6,14 @@ class SessionPerRequestMiddleware:
 
     def __call__(self, request):
         session = SessionStore(request.session.session_key)
-        request.session = session
-
-        response = self.get_response(request)
-
         session.save()
 
-        return response
+        request.session = session
 
+        # Передача управления следующему middleware  или обработчику запроса.
+        response = self.get_response(request)
+
+        return response
 
     # class SessionPerRequestMiddleware:
 #     def __init__(self, get_response):
