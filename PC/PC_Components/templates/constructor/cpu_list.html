@@ -21,6 +21,7 @@
                                 <form method="POST" action="{% url 'constructor' %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="cpu_id" value="{{ cpu.id }}">
+                                    <input type="hidden" name="cpu_socket" value="{{ cpu.socket_cpu }}">
                                     <button type="submit" class="add-component-btn">Выбрать</button>
                                 </form>
                             </div>

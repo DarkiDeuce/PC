@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('accessories/', views.accessories, name='accessories'),
     path('constructor/', views.constructor, name='constructor'),
+    path('constructor/delete', views.delete_component, name='delete_component'),
     re_path(r'^accessories/motherboards/$', views.MotherboardListView.as_view(), name='motherboard'),
     re_path(r'^accessories/motherboard/(?P<pk>\d+)/$', views.MotherboardDetailView.as_view(), name='motherboard-detail'),
     re_path(r'^accessories/videocards/$', views.VideocardsListView.as_view(), name='videocard'),

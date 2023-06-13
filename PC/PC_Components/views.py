@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Motherboard, VideoCards, RAM, CPU, PowerUnit, SSD
 from django.views import generic
 from django.contrib.sessions.backends.db import SessionStore
@@ -55,6 +55,18 @@ class MotherboardSelection(generic.ListView):
     model = Motherboard
     template_name = 'constructor/motherboard_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+
+        session = self.request.session
+        cpu_socket = session.get('cpu_socket')
+
+        if cpu_socket is not None:
+            motherboard_list = Motherboard.objects.filter(socket_motherboard__socket_name=cpu_socket)
+            context['motherboard_list'] = motherboard_list
+
+        return context
+
 class VideocardSelection(generic.ListView):
     model = VideoCards
     template_name = 'constructor/videocard_list.html'
@@ -71,10 +83,11 @@ class CPUSelection(generic.ListView):
         context = super().get_context_data(**kwargs)
 
         session = self.request.session
-        cpu_socket = session.get('motherboard_socket')
-        cpu_list = CPU.objects.filter(socket_cpu__socket_name=cpu_socket)
+        motherboard_socket = session.get('motherboard_socket')
 
-        context['cpu_list'] = cpu_list
+        if motherboard_socket is not None:
+            cpu_list = CPU.objects.filter(socket_cpu__socket_name=motherboard_socket)
+            context['cpu_list'] = cpu_list
 
         return context
 
@@ -131,6 +144,7 @@ def constructor(request):
 
         if cpu_id is not None:
             session['cpu_id'] = cpu_id
+            session['cpu_socket'] = request.POST.get('cpu_socket')
 
         if powerunit_id is not None:
             session['powerunit_id'] = powerunit_id
@@ -160,3 +174,10 @@ def constructor(request):
                                                                     'ssd': ssd,
                                                                     }
                   )
+
+def delete_component(request):
+    if request.method == "POST":
+        remove_component_id = request.POST.get('delete_component')
+        request.session.pop(remove_component_id, None)
+
+    return redirect('constructor')

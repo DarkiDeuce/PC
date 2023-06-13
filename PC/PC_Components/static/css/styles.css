@@ -200,6 +200,7 @@ body {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
 }
 
 .add-component-btn:before {
@@ -210,4 +211,39 @@ body {
 .add-component-btn:hover {
     background-color: black;
     color: white;
+}
+
+.delete-component-btn {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+.delete-component-btn:before {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.delete-component-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.designer_component_buttons {
+    display: flex;
+    align-items: center;
+}
+
+.designer_component_buttons a,
+.designer_component_buttons form {
+    margin-right: 10px;
 }

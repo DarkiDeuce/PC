@@ -15,7 +15,14 @@
                         <h3>Материнская плата: {{ motherboard.0.name }}</h3>
                         <p><strong>Сокет:</strong> {{motherboard.0.socket_motherboard }}</p>
                         <p><strong>Тип опреративной памяти:</strong> {{motherboard.0.memory_type }}</p>
-                        <a href="{% url 'motherboard_selection' %}" class="add-component-btn">Заменить</a>
+                        <div class="designer_component_buttons">
+                            <a href="{% url 'motherboard_selection' %}" class="add-component-btn">Заменить</a>
+                            <form method="POST" action="{% url 'delete_component' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_component" value="{{ motherboard.id }}">
+                                <button type="submit" class="delete-component-btn">Удалить</button>
+                            </form>
+                        </div>
                     </div>
                 {% else %}
                     <div class="photo-component">
