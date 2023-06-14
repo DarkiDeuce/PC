@@ -21,6 +21,7 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="motherboard_id" value="{{ motherboard.id }}">
                                     <input type="hidden" name="motherboard_socket" value="{{ motherboard.socket_motherboard }}">
+                                    <input type="hidden" name="motherboard_type_ram" value="{{ motherboard.memory_type }}">
                                     <button type="submit" class="add-component-btn">Выбрать</button>
                                 </form>
                             </div>

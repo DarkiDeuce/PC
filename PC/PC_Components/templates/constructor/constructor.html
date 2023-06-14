@@ -19,7 +19,9 @@
                             <a href="{% url 'motherboard_selection' %}" class="add-component-btn">Заменить</a>
                             <form method="POST" action="{% url 'delete_component' %}">
                                 {% csrf_token %}
-                                <input type="hidden" name="delete_component" value="{{ motherboard.id }}">
+                                <input type="hidden" name="delete_component" value="motherboard_id">
+                                <input type="hidden" name="delete_socket" value="motherboard_socket">
+                                <input type="hidden" name="delete_type_ram" value="motherboard_type_ram">
                                 <button type="submit" class="delete-component-btn">Удалить</button>
                             </form>
                         </div>
@@ -50,7 +52,14 @@
                         <p><strong>Частота памяти:</strong> {{videocard.0.memory_frequency }}</p>
                         <p><strong>Тип подключения:</strong> {{videocard.0.connection_type }}</p>
                         <p><strong>Рекомендуемая мощность БП:</strong> {{videocard.0.recommended_psu_wattage }}</p>
-                        <a href="{% url 'videocard_selection' %}" class="add-component-btn">Заменить</a>
+                        <div class="designer_component_buttons">
+                            <a href="{% url 'videocard_selection' %}" class="add-component-btn">Заменить</a>
+                            <form method="POST" action="{% url 'delete_component' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_component" value="videocards_id">
+                                <button type="submit" class="delete-component-btn">Удалить</button>
+                            </form>
+                        </div>
                     </div>
                 {% else %}
                     <div class="photo-component">
@@ -76,7 +85,15 @@
                         <p><strong>Объём:</strong> {{ ram.0.memory }}</p>
                         <p><strong>Тип оперативной памяти:</strong> {{ ram.0.type }}</p>
                         <p><strong>Тактовая частота:</strong> {{ ram.0.clock_frequency }}</p>
-                        <a href="{% url 'ram_selection' %}" class="add-component-btn">Заменить</a>
+                        <div class="designer_component_buttons">
+                            <a href="{% url 'ram_selection' %}" class="add-component-btn">Заменить</a>
+                            <form method="POST" action="{% url 'delete_component' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_component" value="ram_id">
+                                <input type="hidden" name="delete_type_ram" value="type_ram">
+                                <button type="submit" class="delete-component-btn">Удалить</button>
+                            </form>
+                        </div>
                     </div>
                 {% else %}
                     <div class="photo-component">
@@ -102,7 +119,15 @@
                         <p><strong>Сокет:</strong> {{ cpu.0.socket_cpu }}</p>
                         <p><strong>Количество ядер:</strong> {{ cpu.0.nuclei }}</p>
                         <p><strong>Тактовая частота:</strong> {{ cpu.0.clock_frequency }}</p>
-                        <a href="{% url 'cpu_selection' %}" class="add-component-btn">Заменить</a>
+                        <div class="designer_component_buttons">
+                            <a href="{% url 'cpu_selection' %}" class="add-component-btn">Заменить</a>
+                            <form method="POST" action="{% url 'delete_component' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_component" value="cpu_id">
+                                <input type="hidden" name="delete_socket" value="cpu_socket">
+                                <button type="submit" class="delete-component-btn">Удалить</button>
+                            </form>
+                        </div>
                     </div>
 
                 {% else %}
@@ -131,7 +156,14 @@
                         <p><strong>Тип разъёма для мат. платы:</strong> {{ powerunit.0.motherboard_connector_type }}</p>
                         <p><strong>Количество разъёмов 4+4pin CPU':</strong> {{ powerunit.0.quantityCPU }}</p>
                         <p><strong>Количество разъёмов PCI-E:</strong> {{ powerunit.0.quantityPCI_E }}</p>
-                        <a href="{% url 'power_unit_selection' %}" class="add-component-btn">Заменить</a>
+                        <div class="designer_component_buttons">
+                            <a href="{% url 'power_unit_selection' %}" class="add-component-btn">Заменить</a>
+                            <form method="POST" action="{% url 'delete_component' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_component" value="powerunit_id">
+                                <button type="submit" class="delete-component-btn">Удалить</button>
+                            </form>
+                        </div>
                     </div>
                 {% else %}
                     <div class="photo-component">
@@ -156,7 +188,14 @@
                         <h3>Твёрдотельный накопитель: {{ ssd.0.name }}</h3>
                         <p><strong>Ёмкость:</strong> {{ssd.0.capacity }}</p>
                         <p><strong>Скорость чтения/записи:</strong> {{ssd.0.speed }}</p>
-                        <a href="{% url 'ssd_selection' %}" class="add-component-btn">Заменить</a>
+                        <div class="designer_component_buttons">
+                            <a href="{% url 'ssd_selection' %}" class="add-component-btn">Заменить</a>
+                            <form method="POST" action="{% url 'delete_component' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_component" value="ssd_id">
+                                <button type="submit" class="delete-component-btn">Удалить</button>
+                            </form>
+                        </div>
                     </div>
                 {% else %}
                     <div class="photo-component">

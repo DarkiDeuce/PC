@@ -60,9 +60,17 @@ class MotherboardSelection(generic.ListView):
 
         session = self.request.session
         cpu_socket = session.get('cpu_socket')
+        type_ram = session.get('type_ram')
 
-        if cpu_socket is not None:
-            motherboard_list = Motherboard.objects.filter(socket_motherboard__socket_name=cpu_socket)
+        if cpu_socket is not None or type_ram is not None:
+            motherboard_list = Motherboard.objects.all()
+
+            if cpu_socket is not None:
+                motherboard_list = motherboard_list.filter(socket_motherboard__socket_name=cpu_socket)
+
+            if type_ram is not None:
+                motherboard_list = motherboard_list.filter(memory_type__type=type_ram)
+
             context['motherboard_list'] = motherboard_list
 
         return context
@@ -74,6 +82,19 @@ class VideocardSelection(generic.ListView):
 class RAMSelection(generic.ListView):
     model = RAM
     template_name = 'constructor/ram_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        session = self.request.session
+        motherboard_ram = session.get('motherboard_type_ram')
+
+        if motherboard_ram is not None:
+            ram_list = RAM.objects.filter(type__type=motherboard_ram)
+            context['ram_list'] = ram_list
+
+        return context
+
 
 class CPUSelection(generic.ListView):
     model = CPU
@@ -135,12 +156,14 @@ def constructor(request):
         if motherboard_id is not None:
             session['motherboard_id'] = motherboard_id
             session['motherboard_socket'] = request.POST.get('motherboard_socket')
+            session['motherboard_type_ram'] = request.POST.get('motherboard_type_ram')
 
         if videocards_id is not None:
             session['videocards_id'] = videocards_id
 
         if ram_id is not None:
             session['ram_id'] = ram_id
+            session['type_ram'] = request.POST.get('type_ram')
 
         if cpu_id is not None:
             session['cpu_id'] = cpu_id
@@ -177,7 +200,12 @@ def constructor(request):
 
 def delete_component(request):
     if request.method == "POST":
-        remove_component_id = request.POST.get('delete_component')
-        request.session.pop(remove_component_id, None)
+        remove_component = request.POST.get('delete_component')
+        remove_socket = request.POST.get('delete_socket')
+        remove_type_ram = request.POST.get('delete_type_ram')
+
+        request.session.pop(remove_component, None)
+        request.session.pop(remove_socket, None)
+        request.session.pop(remove_type_ram, None)
 
     return redirect('constructor')

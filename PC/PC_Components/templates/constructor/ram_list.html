@@ -21,6 +21,7 @@
                                 <form method="POST" action="{% url 'constructor' %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="ram_id" value="{{ ram.id }}">
+                                    <input type="hidden" name="type_ram" value="{{ ram.type }}">
                                     <button type="submit" class="add-component-btn">Выбрать</button>
                                 </form>
                             </div>
