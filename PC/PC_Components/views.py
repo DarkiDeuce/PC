@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Motherboard, VideoCards, RAM, CPU, PowerUnit, SSD
 from django.views import generic
-from django.contrib.sessions.backends.db import SessionStore
 
 class MotherboardListView(generic.ListView):
     model = Motherboard
@@ -75,10 +74,6 @@ class MotherboardSelection(generic.ListView):
 
         return context
 
-class VideocardSelection(generic.ListView):
-    model = VideoCards
-    template_name = 'constructor/videocard_list.html'
-
 class RAMSelection(generic.ListView):
     model = RAM
     template_name = 'constructor/ram_list.html'
@@ -95,7 +90,6 @@ class RAMSelection(generic.ListView):
 
         return context
 
-
 class CPUSelection(generic.ListView):
     model = CPU
     template_name = 'constructor/cpu_list.html'
@@ -111,6 +105,10 @@ class CPUSelection(generic.ListView):
             context['cpu_list'] = cpu_list
 
         return context
+
+class VideocardSelection(generic.ListView):
+    model = VideoCards
+    template_name = 'constructor/videocard_list.html'
 
 class PowerUnitSelection(generic.ListView):
     model = PowerUnit
