@@ -119,8 +119,6 @@ class SSDSelection(generic.ListView):
     template_name = 'constructor/ssd_list.html'
 
 def index(request):
-    #Заменить запросы к базе на 404
-    #Забить из БД только те значения, которы используются в шаблоне
     num_matherboard = Motherboard.objects.all().count()
     num_videcard = VideoCards.objects.all().count()
     num_ram = RAM.objects.all().count()
